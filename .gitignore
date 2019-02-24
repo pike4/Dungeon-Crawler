@@ -1,0 +1,12 @@
+*.db
+*.opendb
+*.sdf
+*.opensdf
+*.pyc
+*.obj
+*.exe
+*.pdb
+*.tlog
+*.log
+Dungeon\ Crawler/Debug
+.vs

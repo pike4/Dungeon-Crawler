@@ -1,0 +1,14 @@
+#include "Events.h"
+
+char* _names[9] = 
+{
+	"//Player 1",
+	"P1_FORWARD_WALK_PRESS",
+	"P1_FORWARD_WALK_RELEASE",
+	"P1_BACK_WALK_PRESS",
+	"P1_BACK_WALK_RELEASE",
+	"P1_LEFT_WALK_PRESS",
+	"P1_LEFT_WALK_RELEASE",
+	"P1_RIGHT_WALK_PRESS",
+	"P1_RIGHT_WALK_RELEASE"
+};
