@@ -2,6 +2,9 @@
 #include "InputManager.h"
 #include "Drawable.h"
 #include "Graphics.h"
+#include "Resources.h"
+#include "SpriteIds.h"
+#include "Image.h"
 
 class Entity : public Drawable
 {
@@ -15,17 +18,21 @@ public:
 	int x, y;
 };
 
-class Image : public Entity
+class MouseFollowTest : public Entity
 {
 public:
 
 	int goalX, goalY;
-	Image(int x_, int y_) : Entity(x_, y_)
-	{}
+	Image* image;
+
+	MouseFollowTest(int x_, int y_) : Entity(x_, y_)
+	{
+		image = Resources::getImage(TEST_MAN_SPRITE, 30, 200);
+	}
 
 	virtual void draw()
 	{
-		Graphics::applyTexture(x, y, Graphics::deleteThis);
+		image->draw(x, y);
 	}
 
 	virtual void update()

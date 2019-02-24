@@ -38,6 +38,9 @@ namespace InputManager
 		case SDLK_a:
 			opcode = LEFT_WALK;
 			break;
+		case SDLK_ESCAPE:
+			opcode = PAUSE_PRESS;
+			break;
 		default:
 			opcode = UNKNOWN_EVENT;
 		}

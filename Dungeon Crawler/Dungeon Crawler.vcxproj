@@ -26,10 +26,13 @@
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Resources.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="SpriteIds.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
@@ -38,12 +41,21 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SpriteIds.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="ImageIDs.txt" />
     <Text Include="resources\Data\Events.txt" />
+    <Text Include="resources\Data\SpriteIDs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Scripts\genDefs.py" />
+    <None Include="resources\Scripts\makeAll.py" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F9748CC0-F0FD-4EA7-ADF8-0F812A277969}</ProjectGuid>

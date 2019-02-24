@@ -1,11 +1,13 @@
 #include "Events.h"
 
-char* EventsNames[14] = 
+char* EventNames[16] = 
 {
 	"FORWARD_WALK",
 	"BACK_WALK",
 	"LEFT_WALK",
 	"RIGHT_WALK",
+	"PAUSE_PRESS",
+	"ANY_KEY",
 	"MOUSE_MOVED",
 	"PRIMARY_ATTACK",
 	"SECONDARY_ATTACK",

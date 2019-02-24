@@ -26,6 +26,6 @@ class EVPrinter : public Listener
 public:
 	virtual void handle(Event e)
 	{
-		printf("Received event: %s\n", EventsNames[e.opcode]);
+		printf("Received event: %s\n", EventNames[e.opcode]);
 	}
 };

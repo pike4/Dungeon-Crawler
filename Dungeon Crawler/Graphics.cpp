@@ -57,11 +57,9 @@ namespace Graphics
 
 	void applyTexture(int x, int y, SDL_Texture* source)
 	{
-		SDL_Rect dest;
-		SDL_Rect src;
+		SDL_Rect src, dest;
 
-		int w;
-		int h;
+		int w, h;
 		int tempX = 0;
 		int tempY = 0;
 
@@ -85,11 +83,30 @@ namespace Graphics
 
 		SDL_RenderCopy(mRenderer, source, &src, &dest);
 	}
+
+	void applyTexture(int x, int y, int w, int h, double angle, SDL_Texture* source)
+	{
+		int srcW, srcH;
+		SDL_QueryTexture(source, NULL, NULL, &srcW, &srcH);
+
+		SDL_Rect src;
+		src.x = 0;
+		src.y = 0;
+		src.w = srcW;
+		src.h = srcH;
+
+		SDL_Rect dst;
+		dst.x = x;
+		dst.y = y;
+		dst.w = w;
+		dst.h = h;
+
+		SDL_RenderCopyEx(mRenderer, source, &src, &dst, angle, NULL, SDL_FLIP_NONE);
+	}
+
 #pragma endregion
 
 	SDL_Window* mWindow;
 	SDL_Surface* mScreen;
 	SDL_Renderer* mRenderer;
-
-	SDL_Texture* deleteThis;
 }

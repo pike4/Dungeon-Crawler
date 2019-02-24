@@ -20,8 +20,7 @@ namespace Graphics
 
 	// Draw the given file at the given screen coordinates
 	void applyTexture(int x, int y, SDL_Texture* source);
-
-	extern SDL_Texture* deleteThis;
+	void applyTexture(int x, int y, int w, int h, double angle, SDL_Texture* source);
 
 	extern SDL_Window* mWindow;
 	extern SDL_Surface* mScreen;

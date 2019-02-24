@@ -23,14 +23,21 @@ def makeDefs(inName, outName):
         print(outName)
         outName = outName[1:]
     
+	#Build enum name
     mainName = str.split(inName, '.')[0]
     mainName = str.split(mainName, '/')[len(str.split(mainName, '/')) - 1]
     defName = mainName.upper() + "_DEF"
-    arrayName = mainName + "Names"
+
+	#Build name for string array
+    arrayName = mainName
+    if arrayName[len(arrayName) - 1] == 's':
+		arrayName = arrayName[:-1]
+    arrayName = arrayName + "Names"
+
+	#Read in lines from input file
     for line in inF.readlines():
         if len(line) < 2:
             continue
-
         #remove the extra line ending on each input line
         if line[len(line) - 1] == '\n':
             line = line[:-1]

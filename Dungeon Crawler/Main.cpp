@@ -10,13 +10,12 @@
 int main()
 {
 	Graphics::init();
+	Resources::init();
 
-	Graphics::deleteThis = Graphics::loadSprite("resources/img/grunt.png");
-
-	World::add(new Image(100, 100));
-	World::add(new Image(200, 200));
-	World::add(new Image(300, 300));
-	World::add(new Image(400, 400));
+	World::add(new MouseFollowTest(100, 100));
+	World::add(new MouseFollowTest(200, 200));
+	World::add(new MouseFollowTest(300, 300));
+	World::add(new MouseFollowTest(400, 400));
 
 	EVPrinter keyP = EVPrinter();
 
