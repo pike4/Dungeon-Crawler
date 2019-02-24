@@ -6,6 +6,9 @@
 
 #define DEFAULT_PRIO    50
 
+#define KEY_UP			0
+#define KEY_DOWN		1
+
 namespace EventManager
 {
     // Add a listener with the given priority

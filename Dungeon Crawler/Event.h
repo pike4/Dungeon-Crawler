@@ -7,7 +7,13 @@ struct Event
     std::vector<int> args;
 
     Event(int op)
+		: opcode(op)
     {
-        opcode = op;
+        
     }
+
+	Event(int op, std::vector<int> a) : Event(op)
+	{
+		args = a;
+	}
 };

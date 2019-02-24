@@ -18,6 +18,12 @@ int main()
 	World::add(new Image(300, 300));
 	World::add(new Image(400, 400));
 
+	EVPrinter keyP = EVPrinter();
+
+	for (int i = 0; i < NUM_EVENTS; i++)
+	{
+		EventManager::add(&keyP, i);
+	}
 
 	while (true)
 	{
