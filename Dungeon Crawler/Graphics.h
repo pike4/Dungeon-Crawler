@@ -1,6 +1,7 @@
 #pragma once
 #include "States.h"
 #include "Drawable.h"
+#include "Animation.h"
 
 #include "SDL.h"
 #include <vector>
@@ -13,10 +14,6 @@ namespace Graphics
 
     // Initialize Drawing functions
     bool init();
-
-	// Load a sprite from the given filepath
-	SDL_Texture* loadSprite(std::string fileName);
-
 
 	// Draw the given file at the given screen coordinates
 	void applyTexture(int x, int y, SDL_Texture* source);

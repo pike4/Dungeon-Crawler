@@ -30,30 +30,6 @@ namespace Graphics
 	}
 
 #pragma region Utility Functions
-	SDL_Texture* loadSprite(std::string fileName)
-	{
-		SDL_Surface* loadedTexture = IMG_Load(fileName.c_str());
-		SDL_Texture* optimizedSurface = NULL;
-
-		if (loadedTexture == NULL)
-		{
-			if (fileName.empty())
-			{
-				fileName = "NO NAME GIVEN";
-			}
-
-			printf("Texture could not be found");
-			printf(IMG_GetError());
-		}
-
-		else
-		{
-			optimizedSurface = SDL_CreateTextureFromSurface(mRenderer, loadedTexture);
-			SDL_FreeSurface(loadedTexture);
-		}
-
-		return optimizedSurface;
-	}
 
 	void applyTexture(int x, int y, SDL_Texture* source)
 	{

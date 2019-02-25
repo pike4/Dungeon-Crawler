@@ -5,6 +5,7 @@
 #include "Resources.h"
 #include "SpriteIds.h"
 #include "Image.h"
+#include "AnimationIds.h"
 
 // Entity life cycles
 #define OBJ_PERMANENT	0
@@ -52,5 +53,30 @@ public:
 		else y -= 1;
 
 		image->angle += 1;
+	}
+};
+
+class AnimTest : public Entity
+{
+public:
+	int shrinkRate = 1;
+
+	Animation* anim;
+	AnimTest(int x_, int y_) : Entity(x_, y_) {
+		anim = Resources::getAnimation(TEST_ANIM, 100, 100, 700);
+	}
+	virtual void update() { 
+		anim->w += shrinkRate; 
+		anim->h +=shrinkRate;
+		if (anim->h > 200 && shrinkRate > 0) {
+			shrinkRate = -1;
+		}
+		else if (shrinkRate < 0 && anim->h < 100)
+		{
+			shrinkRate = 1;
+		}
+	}
+	virtual void draw() {
+		anim->draw(x, y);
 	}
 };

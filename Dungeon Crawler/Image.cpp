@@ -1,8 +1,10 @@
 #include "Image.h"
 
 Image::Image(SDL_Texture* texture_, int w_, int h_, double rotation_)
-	: texture(texture_), angle(rotation_)
+	: texture(texture_)
 {
+	angle = rotation_;
+
 	if (w_ == 0 || h_ == 0) {
 		SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 	}

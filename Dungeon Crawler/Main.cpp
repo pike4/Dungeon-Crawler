@@ -17,7 +17,9 @@ int main()
 	World::add(new MouseFollowTest(300, 300));
 	World::add(new MouseFollowTest(400, 400));
 
-	World::clear();
+	World::add(new AnimTest(500, 500));
+
+	//World::clear();
 
 	EVPrinter keyP = EVPrinter();
 
