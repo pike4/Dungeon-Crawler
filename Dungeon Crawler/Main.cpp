@@ -17,6 +17,8 @@ int main()
 	World::add(new MouseFollowTest(300, 300));
 	World::add(new MouseFollowTest(400, 400));
 
+	World::clear();
+
 	EVPrinter keyP = EVPrinter();
 
 	for (int i = 0; i < NUM_EVENTS; i++)

@@ -33,18 +33,16 @@ namespace Resources
 	{
 		Image* ret = NULL;
 
-		if (textures.find(texID) == textures.end()) {
-			ret = getImage(MISSING_TEXTURE, w, h);
-			printf("Error, undefined texture\n");
-		} 
-		else if (images.find({ texID, w, h }) != images.end()) {
+		return new Image(getTexture(texID), w, h);
+
+		/*else if (images.find({ texID, w, h }) != images.end()) {
 			ret = images[{texID, w, h}];
 		} 
 		else {
 			ret = new Image(getTexture(texID), w, h);
 			images[{texID, w, h}] = ret;
 		}
-
+*/
 		return ret;
 	}
 }

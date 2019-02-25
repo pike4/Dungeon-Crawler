@@ -8,5 +8,6 @@
 *.pdb
 *.tlog
 *.log
+*.ilk
 Dungeon\ Crawler/Debug
 .vs
