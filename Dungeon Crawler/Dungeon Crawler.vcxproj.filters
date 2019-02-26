@@ -16,6 +16,12 @@
     <Filter Include="Scripts">
       <UniqueIdentifier>{acd6763b-5ff1-4f4c-ab8f-73e01960497f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AutoGen">
+      <UniqueIdentifier>{047256b5-55b5-4b13-aebb-b712d8055ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AutoGen">
+      <UniqueIdentifier>{5645e505-3c04-42d6-8049-de46b6ce16b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EventManager.h">
@@ -25,9 +31,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Listener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Events.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
@@ -60,9 +63,6 @@
     <ClInclude Include="Resources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteIds.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,6 +77,21 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Events.h">
+      <Filter>Header Files\AutoGen</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteIds.h">
+      <Filter>Header Files\AutoGen</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationIds.h">
+      <Filter>Header Files\AutoGen</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteSheetIDs.h">
+      <Filter>Header Files\AutoGen</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoGen.h">
+      <Filter>Header Files\AutoGen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,12 +113,6 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Events.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteIds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Resources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -116,11 +125,20 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationIds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationIds.cpp">
+      <Filter>Source Files\AutoGen</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteIds.cpp">
+      <Filter>Source Files\AutoGen</Filter>
+    </ClCompile>
+    <ClCompile Include="Events.cpp">
+      <Filter>Source Files\AutoGen</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheetIDs.cpp">
+      <Filter>Source Files\AutoGen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +152,9 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="resources\Data\AnimationIDs.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="resources\Data\SpriteSheetIDs.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

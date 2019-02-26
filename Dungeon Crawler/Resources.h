@@ -11,7 +11,10 @@ namespace Resources
 	// Load resources
 	void init();
 
-	// Load animation resources
+	// Load sprite sheets for animations
+	void initSpriteSheets();
+
+	// Clip animations from loaded sprite sheets
 	void initAnimations();
 
 	// Load texture resources
@@ -29,10 +32,14 @@ namespace Resources
 	// Load a sprite from the given filepath
 	SDL_Texture* loadSprite(std::string fileName);
 
-	// Create an animation from the given sprite sheet
-	std::vector<SDL_Texture*> loadAnimation(int frX, int frY, int frW, int frH, int sep, std::string file);
+	// Load a sprite sheet from the given filepath
+	SDL_Surface* loadSpriteSheet(std::string fileName);
 
-	extern std::map<int, std::vector<SDL_Texture*>>	spriteSheets;
-	extern std::map<int, SDL_Texture*> textures;
-	extern std::map<int, Animation*> animations;
+	// Create an animation from the given sprite sheet starting at the given coordinates
+	std::vector<SDL_Texture*> clipAnimation(int frX, int frY, int frW, int frH, int sep, int sheetID, int startX = 0, int startY = 0);
+
+	extern std::map<int, std::vector<SDL_Texture*>>	frameSets;
+	extern std::map<int, SDL_Texture*>	textures;
+	extern std::map<int, Animation*>	animations;
+	extern std::map<int, SDL_Surface*>	spriteSheets;
 }

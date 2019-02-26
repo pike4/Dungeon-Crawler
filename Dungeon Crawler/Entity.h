@@ -6,6 +6,10 @@
 #include "SpriteIds.h"
 #include "Image.h"
 #include "AnimationIds.h"
+#include "Listener.h"
+#include "Events.h"
+#include "Event.h"
+#include "EventManager.h"
 
 // Entity life cycles
 #define OBJ_PERMANENT	0
@@ -78,5 +82,105 @@ public:
 	}
 	virtual void draw() {
 		anim->draw(x, y);
+	}
+};
+
+class PlayerTest : public Entity, public Listener
+{
+public:
+	Animation* walkRightAnim;
+	Animation* walkLeftAnim;
+	Animation* walkUpAnim;
+	Animation* walkDownAnim;
+	Animation* idleAnim;
+
+	int xVel, yVel;
+
+	PlayerTest(int x, int y) : Entity(x, y)
+	{
+		idleAnim = Resources::getAnimation(TEST_IDLE, 100, 100, 300);
+		walkRightAnim = Resources::getAnimation(TEST_WALK_LEFT, 100, 100, 300);
+		walkLeftAnim = Resources::getAnimation(TEST_WALK_RIGHT, 100, 100, 300);
+		walkUpAnim = Resources::getAnimation(TEST_WALK_FORWARD, 100, 100, 300);
+		walkDownAnim = Resources::getAnimation(TEST_WALK_BACK,  100, 100, 300);
+
+		EventManager::add(this, FORWARD_WALK);
+		EventManager::add(this, BACK_WALK);
+		EventManager::add(this, LEFT_WALK);
+		EventManager::add(this, RIGHT_WALK);
+	}
+
+	virtual void handle(Event e)
+	{
+		switch (e.opcode)
+		{
+		case FORWARD_WALK:
+			if (e.args[0] == KEY_DOWN) {
+				yVel -= 5;
+			}
+			else {
+				yVel += 5;
+			}
+			break;
+		case BACK_WALK:
+			if (e.args[0] == KEY_DOWN) {
+				yVel += 5;
+			}
+			else {
+				yVel -= 5;
+			}
+			break;
+		case LEFT_WALK:
+			if (e.args[0] == KEY_DOWN) {
+				xVel -= 5;
+			}
+			else {
+				xVel += 5;
+			}
+			break;
+		case RIGHT_WALK:
+			if (e.args[0] == KEY_DOWN) {
+				xVel += 5;
+			}
+			else {
+				xVel -= 5;
+			}
+			break;
+		}
+	}
+
+
+	virtual void draw()
+	{
+		if (xVel == 0 && yVel == 0)
+		{
+			idleAnim->draw(x, y);
+		}
+
+		else if (yVel > 0)
+		{
+			walkDownAnim->draw(x, y);
+		}
+
+		else if (yVel < 0)
+		{
+			walkUpAnim->draw(x, y);
+		}
+
+		else if (xVel < 0)
+		{
+			walkLeftAnim->draw(x, y);
+		}
+
+		else if (xVel > 0)
+		{
+			walkRightAnim->draw(x, y);
+		}
+	}
+
+	virtual void update()
+	{
+		x += xVel;
+		y += yVel;
 	}
 };

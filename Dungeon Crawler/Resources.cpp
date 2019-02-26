@@ -1,7 +1,6 @@
 #include "Resources.h"
 #include "Graphics.h"
-#include "SpriteIds.h"
-#include "AnimationIds.h"
+#include "AutoGen.h"
 #include "Image.h"
 
 #include <array>
@@ -13,6 +12,7 @@ namespace Resources
 	void init()
 	{
 		initTextures();
+		initSpriteSheets();
 		initAnimations();
 	}
 
@@ -22,10 +22,26 @@ namespace Resources
 		textures[TEST_MAN_SPRITE] = loadSprite("resources/img/grunt.png");
 	}
 
+	void initSpriteSheets()
+	{
+		spriteSheets[SHEET_DEFAULT] = loadSpriteSheet("resources/img/default_anim.png");
+		spriteSheets[SHEET_TEST] = loadSpriteSheet("resources/img/test_anim.png");
+
+		spriteSheets[SHEET_PLAYER_TEST] = loadSpriteSheet("resources/img/player_test_anim.png");
+	}
+
 	void initAnimations()
 	{
-		spriteSheets[DEFAULT_ANIM] =	loadAnimation(2, 2, 100, 100, 1, "resources/img/default_anim.png");
-		spriteSheets[TEST_ANIM] =		loadAnimation(2, 2, 100, 100, 1, "resources/img/test_anim.png");
+		frameSets[DEFAULT_ANIM] =	clipAnimation(2, 2, 100, 100, 1, SHEET_DEFAULT);
+		frameSets[TEST_ANIM] =		clipAnimation(2, 2, 100, 100, 1, SHEET_TEST);
+
+
+		int duckAnimW = 78, duckAnimH = 110;
+		frameSets[TEST_IDLE] = clipAnimation(1, 3, duckAnimW, duckAnimH, 0, SHEET_PLAYER_TEST, 0 ,0);
+		frameSets[TEST_WALK_RIGHT] = clipAnimation(1, 3, duckAnimW, duckAnimH, 0, SHEET_PLAYER_TEST, 0, duckAnimH * 1);
+		frameSets[TEST_WALK_LEFT] = clipAnimation(1, 3, duckAnimW, duckAnimH, 0, SHEET_PLAYER_TEST, 0, duckAnimH * 2);
+		frameSets[TEST_WALK_FORWARD] = clipAnimation(1, 3, duckAnimW, duckAnimH, 0, SHEET_PLAYER_TEST, 0, duckAnimH * 3);
+		frameSets[TEST_WALK_BACK] = clipAnimation(1, 3, duckAnimW, duckAnimH, 0, SHEET_PLAYER_TEST, 0, 0);
 	}
 
 #pragma region Accessors
@@ -42,16 +58,30 @@ namespace Resources
 		return ret;
 	}
 
+	SDL_Surface* getSpriteSheet(int texID)
+	{
+		SDL_Surface* ret = NULL;
+
+		if (spriteSheets.find(texID) != spriteSheets.end()) {
+			ret = spriteSheets[texID];
+		}
+		else {
+			ret = spriteSheets[SHEET_DEFAULT];
+		}
+
+		return ret;
+	}
+
 	Animation* getAnimation(int animID, int w, int h, int speed)
 	{
 		std::vector<SDL_Texture*> vec;
 
-		if (spriteSheets.find(animID) != spriteSheets.end()) {
-			vec = spriteSheets[animID];
+		if (frameSets.find(animID) != frameSets.end()) {
+			vec = frameSets[animID];
 		}
 
 		else {
-			vec = spriteSheets[DEFAULT_ANIM];
+			vec = frameSets[DEFAULT_ANIM];
 		}
 
 		Animation* ret = new Animation(w, h, speed);
@@ -104,14 +134,18 @@ namespace Resources
 		return optimizedSurface;
 	}
 
-	std::vector<SDL_Texture*> loadAnimation(int framesX, int framesY, int frameW, int frameH,
-		int seperation, std::string fileName)
+	SDL_Surface* loadSpriteSheet(std::string fileName)
+	{
+		return IMG_Load(fileName.c_str());
+	}
+
+	std::vector<SDL_Texture*> clipAnimation(int framesX, int framesY, int frameW, int frameH, int seperation, int sheetID, int startX, int startY)
 	{
 		std::vector<SDL_Texture*> ret;
 
-		SDL_Surface* mainSurface = IMG_Load(fileName.c_str());
+		SDL_Surface* mainSurface = getSpriteSheet(sheetID);
 		SDL_Surface* tempSurface = new SDL_Surface;
-		SDL_Rect curFrame = { 0, 0, frameW, frameH };
+		SDL_Rect curFrame = { startX, startY, frameW, frameH };
 		SDL_Rect blitFrame = { 0, 0, frameW, frameH };
 		int totalFramesIndex = 0;
 
@@ -121,8 +155,8 @@ namespace Resources
 			{
 				tempSurface = SDL_CreateRGBSurface(0, frameW, frameH, 32, 0, 0, 0, 0);
 				printf(SDL_GetError());
-				curFrame.x = j * (frameW + seperation);
-				curFrame.y = i * (frameH + seperation);
+				curFrame.x = startX + j * (frameW + seperation);
+				curFrame.y = startY + i * (frameH + seperation);
 				SDL_BlitSurface(mainSurface, &curFrame, tempSurface, &blitFrame);
 				ret.push_back(SDL_CreateTextureFromSurface(Graphics::mRenderer, tempSurface));
 			}
@@ -132,7 +166,9 @@ namespace Resources
 		return ret;
 	}
 #pragma endregion
-	std::map<int, std::vector<SDL_Texture*>>	spriteSheets;
+
+	std::map<int, SDL_Surface*>				spriteSheets;
+	std::map<int, std::vector<SDL_Texture*>>	frameSets;
 	std::map<int, SDL_Texture*>				textures;
 	std::map<int, Animation*>				animations;
 	std::map<std::array<int, 3>, Image*>	images;

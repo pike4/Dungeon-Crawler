@@ -19,6 +19,8 @@ int main()
 
 	World::add(new AnimTest(500, 500));
 
+	World::add(new PlayerTest(200, 100));
+
 	//World::clear();
 
 	EVPrinter keyP = EVPrinter();
